@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登入頁面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #001f3f; /* 深藍色背景 */
+        }
+        #login-container {
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        .auth-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .auth-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        .auth-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .register-link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-container">
+        <h2 class="auth-title">登入</h2>
+        <input type="text" id="login-username" class="auth-input" placeholder="輸入用戶名稱...">
+        <input type="password" id="login-password" class="auth-input" placeholder="輸入密碼...">
+        <button id="login-button" class="auth-button" onclick="login()">登入</button>
+        <p>還沒有帳號？<span class="register-link" onclick="goToRegister()">註冊帳號</span></p>
+    </div>
+    <script>
+        function login() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            // 在實際應用中，這裡應該向伺服器發送請求進行身份驗證
+            if (username.trim() !== '' && password.trim() !== '') {
+                window.location.href = 'chatroom.html'; // 跳轉到聊天室頁面
+            }
+        }
+
+        function goToRegister() {
+            window.location.href = 'register.html'; // 跳轉到註冊頁面
+        }
+    </script>
+</body>
+</html>

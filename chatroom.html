@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天室</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('1214.jpg') no-repeat center center fixed;
+            background-size: contain;
+        }
+        #chat-container {
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 150px;
+        }
+        #chat-box {
+            height: 500px;
+            overflow-y: scroll;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+}
+
+        .message-sender {
+            color: #3a3b3d;
+            font-weight: bold;
+            float: left; /* 左對齊 */
+        }
+        .own-message {
+            color: #3e4043;
+            text-align: left; /* 左對齊 */
+        }
+        .message-timestamp {
+            color: #888;
+            font-size: 12px;
+            float: right; /* 右對齊 */
+        }
+        #message-input {
+            width: calc(100% - 70px);
+            padding: 10px;
+        }
+        #send-button {
+            width: 60px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        #logout-button {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-box"></div>
+        <div style="display: flex; width: 100%;">
+            <input type="text" id="message-input" placeholder="輸入訊息...">
+            <button id="send-button" onclick="sendMessage()">發送</button>
+        </div>
+        <button id="logout-button" onclick="logout()">登出</button>
+    </div>
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const messageInput = document.getElementById('message-input');
+        const nickname = prompt("請輸入您的暱稱");
+
+        function getCurrentTime() {
+            const now = new Date();
+            const hours = now.getHours() % 12 || 12; // 12時制
+            const minutes = now.getMinutes();
+            const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+            return `${hours}:${minutes} ${ampm}`;
+        }
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message !== '' && nickname) {
+                const messageElement = document.createElement('p');
+
+                const senderElement = document.createElement('span');
+                senderElement.textContent = `${nickname}: `;
+                senderElement.className = 'message-sender';
+
+                const timestampElement = document.createElement('span');
+                timestampElement.textContent = `(${getCurrentTime()}) `;
+                timestampElement.className = 'message-timestamp';
+
+                messageElement.appendChild(senderElement);
+                messageElement.innerHTML += message;
+                messageElement.appendChild(timestampElement);
+                messageElement.className = 'own-message';
+                chatBox.appendChild(messageElement);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                messageInput.value = '';
+            }
+        }
+
+        function logout() {
+            window.location.href = 'index.html';
+        }
+
+        messageInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

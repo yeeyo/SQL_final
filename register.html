@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>註冊頁面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #001f3f; /* 深藍色背景 */
+        }
+        #register-container {
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        .auth-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .auth-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        .auth-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .login-link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="register-container">
+        <h2 class="auth-title">註冊</h2>
+        <input type="text" id="register-username" class="auth-input" placeholder="輸入用戶名稱...">
+        <input type="password" id="register-password" class="auth-input" placeholder="輸入密碼...">
+        <button id="register-button" class="auth-button" onclick="register()">註冊</button>
+        <p>已經有帳號？<span class="login-link" onclick="goToLogin()">返回登入</span></p>
+    </div>
+    <script>
+        function register() {
+            const username = document.getElementById('register-username').value;
+            const password = document.getElementById('register-password').value;
+            // 在實際應用中，這裡應該向伺服器發送請求進行註冊
+            if (username.trim() !== '' && password.trim() !== '') {
+                // 可以在這裡處理註冊相關的邏輯
+                alert('註冊成功！');
+                // 註冊成功後將使用者導向登入頁面
+                window.location.href = 'index.html';
+            }
+        }
+
+        function goToLogin() {
+            window.location.href = 'index.html'; // 跳轉回登入頁面
+        }
+    </script>
+</body>
+</html>
